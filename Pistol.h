@@ -13,12 +13,15 @@ class Pistol
 	MOTT *mott;
 	int team;
 	int bullets;
+	unsigned long lastShotTime;
 	
   private:
+ 	void CreateBulletString(char* string);
+	bool IsFasterThanFireRate();
 
 	
   public:
-    Pistol(MOTT *aMott, int aTeam);
+    Pistol(MOTT *aMott, char aTeam);
 	void Shoot();
 	void Reload();
 

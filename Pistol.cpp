@@ -3,16 +3,37 @@
 #include "LaserTag_consts.h"
 #include "Pistol_consts.h"
 
-Pistol::Pistol(MOTT *aMott, int aTeam)
+Pistol::Pistol(MOTT *aMott, char aTeam)
 {
 	mott = aMott;
 	team = aTeam;
 	bullets = MAGAZINE_SIZE;
+	lastShotTime = 0L;
 }
 
 void Pistol::Reload()
 {
 	bullets = MAGAZINE_SIZE;
+}
+
+void Pistol::CreateBulletString(char* string)
+{
+	string[0] = team;
+	string[1] = PISTOL_ID;
+}
+
+bool Pistol::IsFasterThanFireRate()
+{
+	int currentShotTime = millis();
+	
+	if(currentShotTime - lastShotTime < FIRE_RATE)
+	{
+		return true;
+	}
+
+	lastShotTime = currentShotTime;
+
+	return false;
 }
 
 void Pistol::Shoot()
@@ -23,32 +44,22 @@ void Pistol::Shoot()
 		Serial.println("No more bullets");
 		return;
 	} 
-	
-	if(bullets > 0){
-		bullets--;
-	}
-	
-	Serial.println("Pew!");
-	
 
-	if(team == WHITE_TEAM)
+	if(IsFasterThanFireRate())
 	{
-		mott->SendSignal(WhiteTeamBullet);
+		Serial.println("Disparaste muy rapido");
+		return;
 	}
-	
-	if(team == BLUE_TEAM)
-	{
-		mott->SendSignal(BlueTeamBullet);
-	}
-	
-	if(team == RED_TEAM)
-	{
-		mott->SendSignal(RedTeamBullet);
-	}
-	
-	if(team == GREEN_TEAM)
-	{
-		mott->SendSignal(GreenTeamBullet);
-	}
+
+	bullets--;
+
+	Serial.print("Pew! Bullets left: ");
+	Serial.println(bullets);
+
+	char BulletString[2];
+
+	CreateBulletString(BulletString);
+
+	mott->SendSignal(BulletString);
 	
 }
