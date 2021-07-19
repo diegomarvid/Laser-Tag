@@ -11,7 +11,7 @@ class Pistol
 {
 	
 	MOTT *mott;
-	int team;
+	char team;
 	int bullets;
 	unsigned long lastShotTime;
 	

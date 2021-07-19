@@ -4,18 +4,22 @@
 #include "Arduino.h"
 #include <MOTT.h>
 #include "LaserTag_consts.h"
+#include "Pistol_consts.h"
 
 class Shield
 {
 	
 	MOTT *mott;
-	int team;
+	char team;
+  int health;
 	
   private:
-
+    bool IsBulletFromDifferentTeam(char* BulletString);
+    void UpdateHealth(char* BulletString);
 	
   public:
-    Shield(MOTT *aMott, int aTeam);
+    Shield(MOTT *aMott, char aTeam);
+    bool DetectedBullet();
 	
 };
 
