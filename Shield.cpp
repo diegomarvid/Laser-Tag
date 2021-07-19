@@ -49,3 +49,7 @@ void Shield::UpdateHealth(char* BulletString)
 
 }
 
+void Shield::Resume(){
+	mott->ResumeSampling();
+}
+

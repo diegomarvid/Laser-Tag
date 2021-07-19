@@ -20,6 +20,7 @@ class Shield
   public:
     Shield(MOTT *aMott, char aTeam);
     bool DetectedBullet();
+    void Resume();
 	
 };
 
