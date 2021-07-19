@@ -1,0 +1,6 @@
+#ifndef LASERTAG_CONSTS_h
+#define LASERTAG_CONSTS_h
+
+enum {WHITE_TEAM, BLUE_TEAM, RED_TEAM, GREEN_TEAM};
+
+#endif
