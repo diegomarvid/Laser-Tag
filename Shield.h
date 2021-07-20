@@ -12,10 +12,11 @@ class Shield
 	MOTT *mott;
 	char team;
   int health;
+  char BulletString[2];
 	
   private:
-    bool IsBulletFromDifferentTeam(char* BulletString);
-    void UpdateHealth(char* BulletString);
+    bool IsBulletFromSameTeam();
+    void UpdateHealth();
 	
   public:
     Shield(MOTT *aMott, char aTeam);

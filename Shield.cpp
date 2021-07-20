@@ -17,19 +17,25 @@ void Shield::ChangeTeam(char aTeam)
 
 bool Shield::DetectedBullet()
 {
-	char BulletString[2];
-
+	
 	if(mott->SamplingEnded())
 	{
-		Serial.println("Bullet arrived");
 		mott->ObtainSample(BulletString);
 
-		if(IsBulletFromDifferentTeam(BulletString))
-		{
-			return false;
-		}
+		Serial.println(BulletString);
 
-		UpdateHealth(BulletString);
+		if(IsBulletFromSameTeam())
+		{
+			Serial.println("Same team!");
+			
+		} else{
+
+			UpdateHealth();
+			Serial.print("Health: ");
+			Serial.print(health);
+			Serial.println(" hp.");
+
+		}
 
 		return true;
 
@@ -39,12 +45,12 @@ bool Shield::DetectedBullet()
 	
 }
 
-bool Shield::IsBulletFromDifferentTeam(char* BulletString)
+bool Shield::IsBulletFromSameTeam()
 {
-	return team != BulletString[0];
+	return team == BulletString[0];
 }
 
-void Shield::UpdateHealth(char* BulletString)
+void Shield::UpdateHealth()
 {
 	char weapon_id = BulletString[1];
 
