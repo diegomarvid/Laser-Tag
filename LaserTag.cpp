@@ -42,6 +42,11 @@ void LaserTag::Shoot()
 	
 }
 
+void LaserTag::Reload()
+{
+	pistol.Reload();
+}
+
 void LaserTag::ChangeTeam(char aTeam)
 {
 	pistol.ChangeTeam(aTeam);

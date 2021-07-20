@@ -24,6 +24,7 @@ class LaserTag
     void SetInterruptCallback(void (*f)());
     void HandleInterrupt();
     void Shoot();
+    void Reload();
     void EnableBulletDetection();
     bool DetectedBullet();
     bool IsBulletFromSameTeam();
