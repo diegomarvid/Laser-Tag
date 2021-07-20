@@ -28,6 +28,8 @@ class LaserTag
     bool DetectedBullet();
     bool IsBulletFromSameTeam();
     void Resume();
+    bool AmIDead();
+    void ResetHealth();
     
 
 	

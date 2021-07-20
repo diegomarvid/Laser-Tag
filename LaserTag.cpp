@@ -35,7 +35,11 @@ void LaserTag::HandleInterrupt()
 
 void LaserTag::Shoot()
 {
-	pistol.Shoot();
+	if(!AmIDead())
+	{
+		pistol.Shoot();
+	}
+	
 }
 
 void LaserTag::ChangeTeam(char aTeam)
@@ -64,5 +68,14 @@ void LaserTag::Resume()
 	shield.Resume();
 }
 
+bool LaserTag::AmIDead()
+{
+	return shield.IsShieldDead();
+}
+
+void LaserTag::ResetHealth()
+{
+	shield.ResetHealth();
+}
 
 

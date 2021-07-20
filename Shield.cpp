@@ -12,6 +12,7 @@ Shield::Shield(MOTT *aMott, char aTeam)
 Shield::Shield()
 {
 	health = MAX_HEALTH;
+	alive = true;
 }
 
 void Shield::SetMOTT(MOTT *aMott)
@@ -31,16 +32,19 @@ bool Shield::DetectedBullet()
 	{
 		mott->ObtainSample(BulletString);
 
-		Serial.println(BulletString);
+		if(IsShieldDead())
+		{
+			return true;
+		}
 
 		if(IsBulletFromSameTeam())
 		{
-			Serial.println("Same team!");
+			Serial.println("Friendly fire is OFF");
 			
 		} else{
 
 			UpdateHealth();
-			Serial.print("Health: ");
+			Serial.print("OUCH! Health: ");
 			Serial.print(health);
 			Serial.println(" hp.");
 
@@ -68,9 +72,25 @@ void Shield::UpdateHealth()
 		health -= PISTOL_DAMAGE;
 	}
 
+	if(health <= 0)
+	{
+		alive = false;
+	}
+
 }
 
 void Shield::Resume(){
 	mott->ResumeSampling();
+}
+
+bool Shield::IsShieldDead()
+{
+	return alive == false;
+}
+
+void Shield::ResetHealth()
+{
+	alive = true;
+	health = MAX_HEALTH;
 }
 

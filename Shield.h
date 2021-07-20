@@ -12,6 +12,7 @@ class Shield
 	MOTT *mott;
 	char team;
   int health;
+  bool alive;
   char BulletString[2];
 	
   private:
@@ -25,6 +26,8 @@ class Shield
     bool DetectedBullet();
     bool IsBulletFromSameTeam();
     void Resume();
+    bool IsShieldDead();
+    void ResetHealth();
 	
 };
 
