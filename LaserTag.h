@@ -12,20 +12,22 @@ class LaserTag
 
   MOTT mott;
 	Pistol pistol;
-	//Shield shield;
+	Shield shield;
 
   char team;
-
-  int TX_SIGNAL_PIN;
-	
  	
   public:
     LaserTag(char aTeam);
-    void Shoot();
     void ChangeTeam(char aTeam);
     void SetIRTransmitterPin(int pin);
+    void SetIRRecieverPin(int pin);
     void SetInterruptCallback(void (*f)());
     void HandleInterrupt();
+    void Shoot();
+    void EnableBulletDetection();
+    bool DetectedBullet();
+    bool IsBulletFromSameTeam();
+    void Resume();
     
 
 	

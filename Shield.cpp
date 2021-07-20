@@ -7,7 +7,16 @@ Shield::Shield(MOTT *aMott, char aTeam)
 {
 	mott = aMott;
 	team = aTeam;
+}
+
+Shield::Shield()
+{
 	health = MAX_HEALTH;
+}
+
+void Shield::SetMOTT(MOTT *aMott)
+{
+	mott = aMott;
 }
 
 void Shield::ChangeTeam(char aTeam)

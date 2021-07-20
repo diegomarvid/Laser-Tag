@@ -18,8 +18,10 @@ class Shield
     void UpdateHealth();
 	
   public:
+    Shield();
     Shield(MOTT *aMott, char aTeam);
     void ChangeTeam(char aTeam);
+    void SetMOTT(MOTT *aMott);
     bool DetectedBullet();
     bool IsBulletFromSameTeam();
     void Resume();

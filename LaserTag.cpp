@@ -8,14 +8,19 @@ LaserTag::LaserTag(char aTeam)
 
 	pistol.SetMOTT(&mott);
 	pistol.ChangeTeam(aTeam);
-	//Shield shield(&mott, team);
+	shield.SetMOTT(&mott);
+	shield.ChangeTeam(aTeam);
 
 }
 
 void LaserTag::SetIRTransmitterPin(int pin)
 {
-	TX_SIGNAL_PIN = pin;
-	mott.SetTxPin(TX_SIGNAL_PIN);
+	mott.SetTxPin(pin);
+}
+
+void LaserTag::SetIRRecieverPin(int pin)
+{
+	mott.SetRxPin(pin);
 }
 
 void LaserTag::SetInterruptCallback(void (*f)())
@@ -36,9 +41,28 @@ void LaserTag::Shoot()
 void LaserTag::ChangeTeam(char aTeam)
 {
 	pistol.ChangeTeam(aTeam);
-	//shield.ChangeTeam(aTeam);
+	shield.ChangeTeam(aTeam);
 }
 
+void LaserTag::EnableBulletDetection()
+{
+	return mott.EnableSampling();
+}
+
+bool LaserTag::DetectedBullet()
+{
+	return shield.DetectedBullet();
+}
+
+bool LaserTag::IsBulletFromSameTeam()
+{
+	return shield.IsBulletFromSameTeam();
+}
+
+void LaserTag::Resume()
+{
+	shield.Resume();
+}
 
 
 
