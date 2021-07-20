@@ -15,13 +15,13 @@ class Shield
   char BulletString[2];
 	
   private:
-    bool IsBulletFromSameTeam();
     void UpdateHealth();
 	
   public:
     Shield(MOTT *aMott, char aTeam);
     void ChangeTeam(char aTeam);
     bool DetectedBullet();
+    bool IsBulletFromSameTeam();
     void Resume();
 	
 };
