@@ -10,12 +10,18 @@ Shield::Shield(MOTT *aMott, char aTeam)
 	health = MAX_HEALTH;
 }
 
+void Shield::ChangeTeam(char aTeam)
+{
+	team = aTeam;
+}
+
 bool Shield::DetectedBullet()
 {
 	char BulletString[2];
 
 	if(mott->SamplingEnded())
 	{
+		Serial.println("Bullet arrived");
 		mott->ObtainSample(BulletString);
 
 		if(IsBulletFromDifferentTeam(BulletString))

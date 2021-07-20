@@ -3,12 +3,29 @@
 #include "LaserTag_consts.h"
 #include "Pistol_consts.h"
 
+Pistol::Pistol()
+{
+	bullets = MAGAZINE_SIZE;
+	lastShotTime = 0L;
+}
+
 Pistol::Pistol(MOTT *aMott, char aTeam)
 {
 	mott = aMott;
 	team = aTeam;
 	bullets = MAGAZINE_SIZE;
 	lastShotTime = 0L;
+}
+
+ void Pistol::SetMOTT(MOTT *aMott)
+ {
+	 mott = aMott;
+ }
+ 
+
+void Pistol::ChangeTeam(char aTeam)
+{
+	team = aTeam;
 }
 
 void Pistol::Reload()
@@ -53,12 +70,14 @@ void Pistol::Shoot()
 
 	bullets--;
 
-	Serial.print("Pew! Bullets left: ");
-	Serial.println(bullets);
-
 	char BulletString[2];
 
 	CreateBulletString(BulletString);
+
+	Serial.print("Pew [");
+	Serial.print(BulletString);
+	Serial.print("] Bullets left: ");
+	Serial.println(bullets);
 
 	mott->SendSignal(BulletString);
 	
