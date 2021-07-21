@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include <MOTT.h>
 #include "LaserTag_consts.h"
-#include "Pistol_consts.h"
+#include "Weapons.h"
 
 class Shield
 {
@@ -14,6 +14,8 @@ class Shield
   int health;
   bool alive;
   char BulletString[2];
+  Gun *gun;
+  char currentGunId;
 	
   private:
     void UpdateHealth();

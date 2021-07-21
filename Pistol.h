@@ -4,6 +4,8 @@
 #include "Arduino.h"
 #include <MOTT.h>
 #include "LaserTag_consts.h"
+#include "Gun.h"
+#include "Weapons.h"
 
 
 
@@ -14,6 +16,7 @@ class Pistol
 	char team;
 	int bullets;
 	unsigned long lastShotTime;
+	Gun *gun;
 	
   private:
  	void CreateBulletString(char* string);

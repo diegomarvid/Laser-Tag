@@ -1,12 +1,13 @@
 #include "Arduino.h"
 #include "Pistol.h"
 #include "LaserTag_consts.h"
-#include "Pistol_consts.h"
+
 
 Pistol::Pistol()
 {
-	bullets = MAGAZINE_SIZE;
 	lastShotTime = 0L;
+	gun = new Revolver();
+	bullets = gun->GetMagazineSize();
 }
 
  void Pistol::SetMOTT(MOTT *aMott)
@@ -22,20 +23,20 @@ void Pistol::ChangeTeam(char aTeam)
 
 void Pistol::Reload()
 {
-	bullets = MAGAZINE_SIZE;
+	bullets = gun->GetMagazineSize();
 }
 
 void Pistol::CreateBulletString(char* string)
 {
 	string[0] = team;
-	string[1] = PISTOL_ID;
+	string[1] = gun->GetId();
 }
 
 bool Pistol::IsFasterThanFireRate()
 {
 	int currentShotTime = millis();
 	
-	if(currentShotTime - lastShotTime < FIRE_RATE)
+	if(currentShotTime - lastShotTime < gun->GetFireRate())
 	{
 		return true;
 	}

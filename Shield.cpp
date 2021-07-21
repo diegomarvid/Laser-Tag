@@ -2,11 +2,11 @@
 #include "Shield.h"
 #include "Shield_consts.h"
 
-
 Shield::Shield()
 {
 	health = MAX_HEALTH;
 	alive = true;
+	currentGunId = 'X';
 }
 
 void Shield::SetMOTT(MOTT *aMott)
@@ -61,10 +61,18 @@ void Shield::UpdateHealth()
 {
 	char weapon_id = BulletString[1];
 
-	if(weapon_id == PISTOL_ID)
+	if(weapon_id == 'K')
 	{
-		health -= PISTOL_DAMAGE;
+		gun = new Revolver();
+
 	}
+
+	if(weapon_id == 'R')
+	{
+		gun = new RocketLauncher();	
+	}
+
+	health -= gun->GetDamage();
 
 	if(health <= 0)
 	{
