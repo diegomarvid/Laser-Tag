@@ -9,14 +9,6 @@ Pistol::Pistol()
 	lastShotTime = 0L;
 }
 
-Pistol::Pistol(MOTT *aMott, char aTeam)
-{
-	mott = aMott;
-	team = aTeam;
-	bullets = MAGAZINE_SIZE;
-	lastShotTime = 0L;
-}
-
  void Pistol::SetMOTT(MOTT *aMott)
  {
 	 mott = aMott;
@@ -64,7 +56,7 @@ void Pistol::Shoot()
 
 	if(IsFasterThanFireRate())
 	{
-		Serial.println("Disparaste muy rapido");
+		Serial.println("You shoot too fast");
 		return;
 	}
 

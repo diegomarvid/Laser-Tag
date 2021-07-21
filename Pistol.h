@@ -22,7 +22,6 @@ class Pistol
 	
   public:
 	Pistol();
-    Pistol(MOTT *aMott, char aTeam);
 	void ChangeTeam(char aTeam);
 	void SetMOTT(MOTT *aMott);
 	void Shoot();

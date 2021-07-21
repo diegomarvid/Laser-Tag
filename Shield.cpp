@@ -3,12 +3,6 @@
 #include "Shield_consts.h"
 
 
-Shield::Shield(MOTT *aMott, char aTeam)
-{
-	mott = aMott;
-	team = aTeam;
-}
-
 Shield::Shield()
 {
 	health = MAX_HEALTH;
