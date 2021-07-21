@@ -61,13 +61,13 @@ void Shield::UpdateHealth()
 {
 	char weapon_id = BulletString[1];
 
-	if(weapon_id == 'K')
+	if(weapon_id == REVOLVER_ID)
 	{
 		gun = new Revolver();
 
 	}
 
-	if(weapon_id == 'R')
+	if(weapon_id == ROCKET_LAUNCHER_ID)
 	{
 		gun = new RocketLauncher();	
 	}

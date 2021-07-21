@@ -6,6 +6,7 @@
 #include "LaserTag_consts.h"
 #include "Weapons.h"
 
+
 class Shield
 {
 	
