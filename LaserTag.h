@@ -16,7 +16,8 @@ class LaserTag
 	Shield shield;
 
   char team;
- 	
+
+
   public:
     LaserTag(char aTeam);
     void ChangeTeam(char aTeam);

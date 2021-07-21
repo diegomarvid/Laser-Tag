@@ -36,7 +36,7 @@ void LaserTag::HandleInterrupt()
 }
 
 void LaserTag::ChangeWeaponType(int weapon_id){
-	pistol.SetGunType(weapon_id);
+	pistol.ChangeGunType(weapon_id);
 }
 
 void LaserTag::Shoot()

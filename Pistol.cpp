@@ -6,8 +6,7 @@
 
 Pistol::Pistol()
 {
-	lastShotTime = 0L;
-	
+	lastShotTime = 0L;	
 }
 
  void Pistol::SetMOTT(MOTT *aMott)
@@ -17,8 +16,6 @@ Pistol::Pistol()
 
 void Pistol::CreateGun(int weapon_id)
 {
-	//Serial.println("Voy a crear arma");
-
 	switch(weapon_id)
 	{
 		case REVOLVER_ID:
@@ -41,6 +38,12 @@ void Pistol::SetGunType(int weapon_id)
 {
 	CreateGun(weapon_id);
 	bullets = gun->GetMagazineSize();
+}
+
+void Pistol::ChangeGunType(int weapon_id)
+{
+	CreateGun(weapon_id);
+	bullets = 0;
 }
 
 void Pistol::Reload()
