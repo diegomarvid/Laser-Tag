@@ -6,6 +6,7 @@
 #include <Pistol.h>
 #include <Shield.h>
 #include "LaserTag_consts.h"
+#include "Weapons_consts.h"
 
 class LaserTag
 {
@@ -23,6 +24,7 @@ class LaserTag
     void SetIRRecieverPin(int pin);
     void SetInterruptCallback(void (*f)());
     void HandleInterrupt();
+    void ChangeWeaponType(int weapon_id);
     void Shoot();
     void Reload();
     void EnableBulletDetection();

@@ -14,8 +14,6 @@ class RocketLauncher: public Gun {
             this->fire_rate = 2000;
             this->damage = 10;
       };
-      
-     
 };
 
 class Revolver: public Gun {
@@ -27,9 +25,7 @@ class Revolver: public Gun {
             this->magazine_size = 7;
             this->fire_rate = 500;
             this->damage = 1;
-      };
-      
-     
+      };  
 };
 
 #endif // ROCKET_LAUNCHER_H

@@ -21,12 +21,14 @@ class Pistol
   private:
  	void CreateBulletString(char* string);
 	bool IsFasterThanFireRate();
+	void CreateGun(int weapon_id);
 
 	
   public:
 	Pistol();
 	void ChangeTeam(char aTeam);
 	void SetMOTT(MOTT *aMott);
+	void SetGunType(int weapon_id);
 	void Shoot();
 	void Reload();
 

@@ -8,6 +8,8 @@ LaserTag::LaserTag(char aTeam)
 
 	pistol.SetMOTT(&mott);
 	pistol.ChangeTeam(aTeam);
+	pistol.SetGunType(REVOLVER_ID);
+
 	shield.SetMOTT(&mott);
 	shield.ChangeTeam(aTeam);
 
@@ -31,6 +33,10 @@ void LaserTag::SetInterruptCallback(void (*f)())
 void LaserTag::HandleInterrupt()
 {
 	mott.HandleInterrupt();
+}
+
+void LaserTag::ChangeWeaponType(int weapon_id){
+	pistol.SetGunType(weapon_id);
 }
 
 void LaserTag::Shoot()
