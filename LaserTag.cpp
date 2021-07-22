@@ -11,6 +11,8 @@ LaserTag::LaserTag(char aTeam)
 	pistol.ChangeTeam(aTeam);
 	pistol.SetGunType(REVOLVER_ID);
 
+	weapon_index = GetWeaponIndex(REVOLVER_ID);
+
 	shield.SetMOTT(&mott);
 	shield.ChangeTeam(aTeam);
 
@@ -33,21 +35,16 @@ void LaserTag::SetInterruptCallback(void (*f)())
 
 int LaserTag::GetTeamIndex(char aTeam)
 {
-	if(team == WHITE_TEAM)
-	{
-		return 0;
-	} else if(team == BLUE_TEAM)
-	{
-		return 1;
-	} else if(team == RED_TEAM)
-	{
-		return 2;
-	} else if(team == GREEN_TEAM)
-	{
-		return 3;
-	} else{
-		return 0;
+
+	for(int i = 0; i < 4; i++){
+		if(Teams[i] == aTeam)
+		{
+			return i;
+		}
 	}
+
+	return 0;
+
 }
 
 void LaserTag::HandleInterrupt()
@@ -85,6 +82,33 @@ void LaserTag::ChangeWeaponType(int weapon_id){
 char LaserTag::GetCurrentWeapon()
 {
 	return pistol.GetCurrentWeapon();
+}
+
+int LaserTag::GetWeaponIndex(char aWeaponId)
+{
+
+	for(int i = 0; i < 2; i++){
+		if(Weapons[i] == aWeaponId)
+		{
+			return i;
+		}
+	}
+
+	return 0;
+
+}
+
+void LaserTag::ChangeToNextWeapon(){
+
+	weapon_index++;
+
+	if(weapon_index == 2)
+	{
+		weapon_index = 0;
+	}
+
+	ChangeWeaponType(Weapons[weapon_index]);
+
 }
 
 void LaserTag::Shoot()

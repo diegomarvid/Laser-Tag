@@ -16,11 +16,13 @@ class LaserTag
 	Shield shield;
 
   int team_index;
+  int weapon_index;
 
   char team;
 
   private:
     int GetTeamIndex(char aTeam);
+    int GetWeaponIndex(char aTeam);
 
   public:
     LaserTag(char aTeam);
@@ -33,6 +35,7 @@ class LaserTag
     char GetCurrentTeam();
     void ChangeWeaponType(int weapon_id);
     char GetCurrentWeapon();
+    void ChangeToNextWeapon();
     void Shoot();
     void Reload();
     void EnableBulletDetection();
