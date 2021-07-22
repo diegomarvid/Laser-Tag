@@ -36,7 +36,7 @@ void LaserTag::SetInterruptCallback(void (*f)())
 int LaserTag::GetTeamIndex(char aTeam)
 {
 
-	for(int i = 0; i < 4; i++){
+	for(int i = 0; i < TEAM_AMOUNT; i++){
 		if(Teams[i] == aTeam)
 		{
 			return i;
@@ -61,7 +61,7 @@ void LaserTag::ChangeTeam(char aTeam)
 void LaserTag::ChangeToNextTeam(){
 
 	team_index++;
-	if(team_index == 4)
+	if(team_index == TEAM_AMOUNT)
 	{
 		team_index = 0;
 	}
@@ -87,7 +87,7 @@ char LaserTag::GetCurrentWeapon()
 int LaserTag::GetWeaponIndex(char aWeaponId)
 {
 
-	for(int i = 0; i < 2; i++){
+	for(int i = 0; i < WEAPONS_AMOUNT; i++){
 		if(Weapons[i] == aWeaponId)
 		{
 			return i;
@@ -102,7 +102,7 @@ void LaserTag::ChangeToNextWeapon(){
 
 	weapon_index++;
 
-	if(weapon_index == 2)
+	if(weapon_index == WEAPONS_AMOUNT)
 	{
 		weapon_index = 0;
 	}
