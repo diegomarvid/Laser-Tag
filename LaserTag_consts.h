@@ -6,5 +6,7 @@ const char BLUE_TEAM = 'B';
 const char RED_TEAM = 'R';
 const char GREEN_TEAM = 'G';
 
+const char Teams[4] = {WHITE_TEAM, BLUE_TEAM, RED_TEAM, GREEN_TEAM};
+
 
 #endif

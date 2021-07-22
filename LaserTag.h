@@ -15,8 +15,12 @@ class LaserTag
 	Pistol pistol;
 	Shield shield;
 
+  int team_index;
+
   char team;
 
+  private:
+    int GetTeamIndex(char aTeam);
 
   public:
     LaserTag(char aTeam);
@@ -25,6 +29,8 @@ class LaserTag
     void SetInterruptCallback(void (*f)());
     void HandleInterrupt();
     void ChangeTeam(char aTeam);
+    void ChangeToNextTeam();
+    char GetCurrentTeam();
     void ChangeWeaponType(int weapon_id);
     char GetCurrentWeapon();
     void Shoot();

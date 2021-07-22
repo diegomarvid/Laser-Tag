@@ -5,6 +5,7 @@
 LaserTag::LaserTag(char aTeam)
 {
 	team = aTeam;
+	team_index = GetTeamIndex(team);
 
 	pistol.SetMOTT(&mott);
 	pistol.ChangeTeam(aTeam);
@@ -30,6 +31,25 @@ void LaserTag::SetInterruptCallback(void (*f)())
 	mott.SetBitTime(1L, f); //  speed: 1 bit / ms
 }
 
+int LaserTag::GetTeamIndex(char aTeam)
+{
+	if(team == WHITE_TEAM)
+	{
+		return 0;
+	} else if(team == BLUE_TEAM)
+	{
+		return 1;
+	} else if(team == RED_TEAM)
+	{
+		return 2;
+	} else if(team == GREEN_TEAM)
+	{
+		return 3;
+	} else{
+		return 0;
+	}
+}
+
 void LaserTag::HandleInterrupt()
 {
 	mott.HandleInterrupt();
@@ -39,6 +59,23 @@ void LaserTag::ChangeTeam(char aTeam)
 {
 	pistol.ChangeTeam(aTeam);
 	shield.ChangeTeam(aTeam);
+}
+
+void LaserTag::ChangeToNextTeam(){
+
+	team_index++;
+	if(team_index == 4)
+	{
+		team_index = 0;
+	}
+
+	team = Teams[team_index];
+
+	ChangeTeam(team);
+}
+
+char LaserTag::GetCurrentTeam(){
+	return team;
 }
 
 void LaserTag::ChangeWeaponType(int weapon_id){
