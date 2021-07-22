@@ -46,6 +46,11 @@ void Pistol::ChangeGunType(int weapon_id)
 	bullets = 0;
 }
 
+char Pistol::GetCurrentWeapon()
+{
+	return gun->GetId();
+}
+
 void Pistol::Reload()
 {
 	bullets = gun->GetMagazineSize();

@@ -45,6 +45,11 @@ void LaserTag::ChangeWeaponType(int weapon_id){
 	pistol.ChangeGunType(weapon_id);
 }
 
+char LaserTag::GetCurrentWeapon()
+{
+	return pistol.GetCurrentWeapon();
+}
+
 void LaserTag::Shoot()
 {
 	if(!AmIDead())
@@ -55,7 +60,7 @@ void LaserTag::Shoot()
 }
 
 void LaserTag::Reload()
-{
+{	Serial.println("Reloading...");
 	pistol.Reload();
 }
 

@@ -30,6 +30,7 @@ class Pistol
 	void SetMOTT(MOTT *aMott);
 	void SetGunType(int weapon_id);
 	void ChangeGunType(int weapon_id);
+	char GetCurrentWeapon();
 	void Shoot();
 	void Reload();
 

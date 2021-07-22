@@ -26,6 +26,7 @@ class LaserTag
     void HandleInterrupt();
     void ChangeTeam(char aTeam);
     void ChangeWeaponType(int weapon_id);
+    char GetCurrentWeapon();
     void Shoot();
     void Reload();
     void EnableBulletDetection();
