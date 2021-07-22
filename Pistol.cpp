@@ -55,6 +55,7 @@ void Pistol::CreateBulletString(char* string)
 {
 	string[0] = team;
 	string[1] = gun->GetId();
+	string[2] = 0;
 }
 
 bool Pistol::IsFasterThanFireRate()
@@ -88,7 +89,7 @@ void Pistol::Shoot()
 
 	bullets--;
 
-	char BulletString[2];
+	char BulletString[3];
 
 	CreateBulletString(BulletString);
 

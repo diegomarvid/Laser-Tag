@@ -20,11 +20,11 @@ class LaserTag
 
   public:
     LaserTag(char aTeam);
-    void ChangeTeam(char aTeam);
     void SetIRTransmitterPin(int pin);
     void SetIRRecieverPin(int pin);
     void SetInterruptCallback(void (*f)());
     void HandleInterrupt();
+    void ChangeTeam(char aTeam);
     void ChangeWeaponType(int weapon_id);
     void Shoot();
     void Reload();

@@ -27,12 +27,18 @@ void LaserTag::SetIRRecieverPin(int pin)
 
 void LaserTag::SetInterruptCallback(void (*f)())
 {
-	mott.SetBitTime(1L, f);
+	mott.SetBitTime(1L, f); //  speed: 1 bit / ms
 }
 
 void LaserTag::HandleInterrupt()
 {
 	mott.HandleInterrupt();
+}
+
+void LaserTag::ChangeTeam(char aTeam)
+{
+	pistol.ChangeTeam(aTeam);
+	shield.ChangeTeam(aTeam);
 }
 
 void LaserTag::ChangeWeaponType(int weapon_id){
@@ -51,12 +57,6 @@ void LaserTag::Shoot()
 void LaserTag::Reload()
 {
 	pistol.Reload();
-}
-
-void LaserTag::ChangeTeam(char aTeam)
-{
-	pistol.ChangeTeam(aTeam);
-	shield.ChangeTeam(aTeam);
 }
 
 void LaserTag::EnableBulletDetection()
