@@ -15,6 +15,20 @@ class Hit {
             damage = aDamage;
         };
 
+        char GetPlayerId()
+        {
+            return player_id;
+        }
+
+        int GetDamage()
+        {
+            return damage;
+        }
+
+        void SetDamage(int aDamage){
+            damage = aDamage;
+        }
+
         void Print(){
             Serial.print("[");
             Serial.print(player_id);

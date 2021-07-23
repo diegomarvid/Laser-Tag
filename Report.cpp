@@ -6,10 +6,36 @@ Report::Report()
     Hits = (Hit*) malloc(sizeof(Hit) * MAX_HEALTH);
 }
 
+int Report::CheckIfPlayerHitMeAlready(Hit hit)
+{
+    if(last_hit == -1) return -1;
+
+    char player_id = hit.GetPlayerId();
+
+    for (int i = 0; i <= last_hit; i++)
+    {
+        if(player_id == Hits[i].GetPlayerId()){
+            return i;
+        }
+    }
+
+    return -1;
+
+}
+
 void Report::AddHit(Hit hit)
 {
-    last_hit++;
-    Hits[last_hit] = hit;
+
+    int Hit_Index = CheckIfPlayerHitMeAlready(hit);
+
+    if(Hit_Index == -1){
+        last_hit++;
+        Hits[last_hit] = hit;
+    }else{
+        char newDamage = Hits[last_hit].GetDamage() + hit.GetDamage();
+        Hits[Hit_Index].SetDamage(newDamage);
+    }
+
 
 }
 

@@ -87,7 +87,7 @@ void Shield::UpdateHealth()
 		alive = false;
 
 	} 
-	
+
 	Hit hit(BulletString[0], gun->GetDamage());
 	report.AddHit(hit);
 	

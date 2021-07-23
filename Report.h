@@ -15,6 +15,7 @@ class Report{
         Report();
         void AddHit(Hit hit);
         void PrintHits();
+        int CheckIfPlayerHitMeAlready(Hit hit);
 
 };
 
