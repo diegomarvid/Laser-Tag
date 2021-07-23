@@ -1,7 +1,6 @@
 #include "Arduino.h"
 #include "Shield.h"
-#include "Shield_consts.h"
-#include "Hit.h"
+
 
 Shield::Shield()
 {
@@ -39,11 +38,15 @@ bool Shield::DetectedBullet()
 		} else{
 
 			UpdateHealth();
+
+
 			Serial.print("OUCH! Player ");
 			Serial.print(BulletString[0]);
 			Serial.print(" hit me, Health: ");
 			Serial.print(health);
 			Serial.println(" hp.");
+
+			report.PrintHits();
 
 		}
 
@@ -62,6 +65,8 @@ bool Shield::IsBulletFromSameTeam()
 
 void Shield::UpdateHealth()
 {
+	if(alive == false) return;
+
 	char weapon_id = BulletString[2];
 
 	if(weapon_id == REVOLVER_ID)
@@ -80,10 +85,13 @@ void Shield::UpdateHealth()
 	if(health <= 0)
 	{
 		alive = false;
-	}
 
+	} 
+	
 	Hit hit(BulletString[0], gun->GetDamage());
-	hit.Print();
+	report.AddHit(hit);
+	
+
 
 }
 

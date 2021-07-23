@@ -9,6 +9,7 @@ class Hit {
     int damage;
 
     public:
+        Hit();
         Hit(char aPlayerId, int aDamage){
             player_id = aPlayerId;
             damage = aDamage;

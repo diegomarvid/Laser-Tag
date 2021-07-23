@@ -5,6 +5,9 @@
 #include <MOTT.h>
 #include "LaserTag_consts.h"
 #include "Weapons.h"
+#include "Shield_consts.h"
+#include "Hit.h"
+#include "Report.h"
 
 
 class Shield
@@ -17,6 +20,8 @@ class Shield
   char BulletString[2];
   Gun *gun;
   char currentGunId;
+
+  Report report;
 	
   private:
     void UpdateHealth();
