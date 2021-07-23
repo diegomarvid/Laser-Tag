@@ -1,6 +1,7 @@
 #include "Arduino.h"
 #include "Shield.h"
 #include "Shield_consts.h"
+#include "Hit.h"
 
 Shield::Shield()
 {
@@ -80,6 +81,9 @@ void Shield::UpdateHealth()
 	{
 		alive = false;
 	}
+
+	Hit hit(BulletString[0], gun->GetDamage());
+	hit.Print();
 
 }
 
