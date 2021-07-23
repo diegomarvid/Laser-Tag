@@ -80,6 +80,9 @@ void Shield::UpdateHealth()
 		gun = new RocketLauncher();	
 	}
 
+	Hit hit(BulletString[0], gun->GetDamage());
+	report.AddHit(hit);
+
 	health -= gun->GetDamage();
 
 	if(health <= 0)
@@ -88,8 +91,7 @@ void Shield::UpdateHealth()
 
 	} 
 
-	Hit hit(BulletString[0], gun->GetDamage());
-	report.AddHit(hit);
+	
 	
 
 

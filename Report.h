@@ -7,6 +7,8 @@
 
 class Report{
 
+    static const int NOT_FOUND = -1;
+
     Hit* Hits;
 
     int last_hit;
@@ -15,7 +17,7 @@ class Report{
         Report();
         void AddHit(Hit hit);
         void PrintHits();
-        int CheckIfPlayerHitMeAlready(Hit hit);
+        int GetHitIndex(Hit hit);
 
 };
 
