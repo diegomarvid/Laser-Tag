@@ -46,3 +46,10 @@ void Report::PrintHits()
         Hits[i].Print();
     }
 }
+
+void Report::Reset()
+{
+    delete [] Hits;
+    last_hit = -1;
+    Hits = (Hit*) malloc(sizeof(Hit) * MAX_HEALTH);
+}

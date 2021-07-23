@@ -91,10 +91,6 @@ void Shield::UpdateHealth()
 
 	} 
 
-	
-	
-
-
 }
 
 void Shield::Resume(){

@@ -18,6 +18,7 @@ class Report{
         void AddHit(Hit hit);
         void PrintHits();
         int GetHitIndex(Hit hit);
+        void Reset();
 
 };
 
