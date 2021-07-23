@@ -19,13 +19,14 @@ class LaserTag
   int weapon_index;
 
   char team;
+  char player_id;
 
   private:
     int GetTeamIndex(char aTeam);
     int GetWeaponIndex(char aTeam);
 
   public:
-    LaserTag(char aTeam);
+    LaserTag(char aTeam, char aplayerId);
     void SetIRTransmitterPin(int pin);
     void SetIRRecieverPin(int pin);
     void SetInterruptCallback(void (*f)());

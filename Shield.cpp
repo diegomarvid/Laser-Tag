@@ -38,7 +38,9 @@ bool Shield::DetectedBullet()
 		} else{
 
 			UpdateHealth();
-			Serial.print("OUCH! Health: ");
+			Serial.print("OUCH! Player ");
+			Serial.print(BulletString[0]);
+			Serial.print(" hit me, Health: ");
 			Serial.print(health);
 			Serial.println(" hp.");
 
@@ -54,12 +56,12 @@ bool Shield::DetectedBullet()
 
 bool Shield::IsBulletFromSameTeam()
 {
-	return team == BulletString[0];
+	return team == BulletString[1];
 }
 
 void Shield::UpdateHealth()
 {
-	char weapon_id = BulletString[1];
+	char weapon_id = BulletString[2];
 
 	if(weapon_id == REVOLVER_ID)
 	{

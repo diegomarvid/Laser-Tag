@@ -2,14 +2,18 @@
 #include "LaserTag.h"
 #include "LaserTag_consts.h"
 
-LaserTag::LaserTag(char aTeam)
+LaserTag::LaserTag(char aTeam, char aPlayerId)
 {
+
+	player_id = aPlayerId;
+
 	team = aTeam;
 	team_index = GetTeamIndex(team);
 
 	pistol.SetMOTT(&mott);
 	pistol.ChangeTeam(aTeam);
 	pistol.SetGunType(REVOLVER_ID);
+	pistol.SetPlayerId(player_id);
 
 	weapon_index = GetWeaponIndex(REVOLVER_ID);
 

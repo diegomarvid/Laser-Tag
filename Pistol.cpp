@@ -6,7 +6,8 @@
 
 Pistol::Pistol()
 {
-	lastShotTime = 0L;	
+	lastShotTime = 0L;
+	player_id = 'X';	
 }
 
  void Pistol::SetMOTT(MOTT *aMott)
@@ -46,6 +47,11 @@ void Pistol::ChangeGunType(int weapon_id)
 	bullets = 0;
 }
 
+void Pistol::SetPlayerId(char aPlayerId)
+{
+	player_id = aPlayerId;
+}
+
 char Pistol::GetCurrentWeapon()
 {
 	return gun->GetId();
@@ -57,10 +63,11 @@ void Pistol::Reload()
 }
 
 void Pistol::CreateBulletString(char* string)
-{
-	string[0] = team;
-	string[1] = gun->GetId();
-	string[2] = 0;
+{	
+	string[0] = player_id;
+	string[1] = team;
+	string[2] = gun->GetId();
+	string[3] = 0;
 }
 
 bool Pistol::IsFasterThanFireRate()
@@ -94,7 +101,7 @@ void Pistol::Shoot()
 
 	bullets--;
 
-	char BulletString[3];
+	char BulletString[4];
 
 	CreateBulletString(BulletString);
 

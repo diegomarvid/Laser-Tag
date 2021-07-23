@@ -14,6 +14,7 @@ class Pistol
 	
 	MOTT *mott;
 	char team;
+	char player_id;
 	int bullets;
 	unsigned long lastShotTime;
 	Gun *gun;
@@ -30,6 +31,7 @@ class Pistol
 	void SetMOTT(MOTT *aMott);
 	void SetGunType(int weapon_id);
 	void ChangeGunType(int weapon_id);
+	void SetPlayerId(char aPlayerId);
 	char GetCurrentWeapon();
 	void Shoot();
 	void Reload();
