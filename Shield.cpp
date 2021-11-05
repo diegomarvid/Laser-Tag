@@ -26,6 +26,8 @@ bool Shield::DetectedBullet()
 	{
 		mott->ObtainSample(BulletString);
 
+		Serial.print("<<<MOTT: "); Serial.println(BulletString);
+
 		if(IsShieldDead())
 		{
 			return true;
