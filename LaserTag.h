@@ -7,6 +7,7 @@
 #include <Shield.h>
 #include "LaserTag_consts.h"
 #include "Weapons_consts.h"
+#include <EspMQTTClient.h>
 
 class LaserTag
 {
@@ -23,12 +24,17 @@ class LaserTag
 
   bool game_started = false;
 
+  EspMQTTClient *client;
+
   private:
     int GetTeamIndex(char aTeam);
     int GetWeaponIndex(char aTeam);
 
   public:
-    LaserTag(char aTeam, char aplayerId);
+    LaserTag(char aTeam, char aplayerId, EspMQTTClient *aClient);  
+    void MQTTLoop();
+    void HandleMQTTConnection();
+    void HandleSendDamage();
     void SetIRTransmitterPin(int pin);
     void SetIRRecieverPin(int pin);
     void SetInterruptCallback(void (*f)());

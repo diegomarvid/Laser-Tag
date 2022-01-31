@@ -2,7 +2,7 @@
 #include "LaserTag.h"
 #include "LaserTag_consts.h"
 
-LaserTag::LaserTag(char aTeam, char aPlayerId)
+LaserTag::LaserTag(char aTeam, char aPlayerId, EspMQTTClient *aClient)
 {
 
 	player_id = aPlayerId;
@@ -19,6 +19,34 @@ LaserTag::LaserTag(char aTeam, char aPlayerId)
 
 	shield.SetMOTT(&mott);
 	shield.ChangeTeam(aTeam);
+
+	client = aClient;
+	client->enableDebuggingMessages();
+
+}
+
+void LaserTag::MQTTLoop()
+{
+	client->loop();
+}
+
+void LaserTag::HandleSendDamage()
+{
+	client->publish("LaserTag/SendDamageTaken", "Hello world");
+}
+
+void LaserTag::HandleMQTTConnection()
+{
+
+  client->subscribe("LaserTag/SendDamage", [&] (const String &payload)  {
+    Serial.println("Sending damage....");
+
+    //Serial.println(payload);
+    HandleSendDamage();
+
+  });
+
+   client->publish("LaserTag/Died", "Bye world!");
 
 }
 
