@@ -117,6 +117,9 @@ void LaserTag::ChangeToNextWeapon(){
 
 void LaserTag::Shoot()
 {
+
+	if(!game_started) return;
+
 	if(!AmIDead())
 	{
 		pistol.Shoot();
@@ -136,6 +139,7 @@ void LaserTag::EnableBulletDetection()
 
 bool LaserTag::DetectedBullet()
 {
+	
 	return shield.DetectedBullet();
 }
 

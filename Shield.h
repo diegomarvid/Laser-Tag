@@ -9,7 +9,6 @@
 #include "Hit.h"
 #include "Report.h"
 
-
 class Shield
 {
 	

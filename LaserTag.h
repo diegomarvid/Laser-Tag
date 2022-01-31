@@ -21,6 +21,8 @@ class LaserTag
   char team;
   char player_id;
 
+  bool game_started = false;
+
   private:
     int GetTeamIndex(char aTeam);
     int GetWeaponIndex(char aTeam);
