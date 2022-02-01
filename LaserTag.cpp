@@ -52,6 +52,24 @@ String LaserTag::CreateJsonConnected()
   return json;
 }
 
+String LaserTag::CreateJsonTeam()
+{
+
+  String json = "{\"id\":\"";
+  json += player_id;
+  json += "\",\"team\":";
+  json += team;
+  json += "}";
+
+
+  return json;
+}
+
+void LaserTag::SendTeam()
+{
+	client->publish("LaserTag/Team", CreateJsonTeam());
+}
+
 void LaserTag::HandleMQTTConnection()
 {
 
@@ -60,7 +78,6 @@ void LaserTag::HandleMQTTConnection()
 		Serial.println("Starting game...");
 		game_started = true;
 		EnableBulletDetection();
-
 	});
 
 	client->subscribe("LaserTag/SendDamage", [&] (const String &payload)  {

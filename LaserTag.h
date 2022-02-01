@@ -30,6 +30,7 @@ class LaserTag
     int GetTeamIndex(char aTeam);
     int GetWeaponIndex(char aTeam);
     String CreateJsonConnected();
+    String CreateJsonTeam();
     void HandleSendDamage();
 
   public:
@@ -55,6 +56,7 @@ class LaserTag
     void Resume();
     bool AmIDead();
     void ResetHealth();
+    void SendTeam();
     
 
 	
