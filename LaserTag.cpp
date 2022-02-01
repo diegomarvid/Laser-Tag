@@ -35,18 +35,39 @@ void LaserTag::HandleSendDamage()
 	client->publish("LaserTag/SendDamageTaken", "Hello world");
 }
 
+String LaserTag::CreateJsonConnected()
+{
+
+  String json = "{\"id\":\"";
+  json += player_id;
+  json += "\",\"connected\":";
+  json += "\"true\"";
+  json += "}";
+
+
+  return json;
+}
+
 void LaserTag::HandleMQTTConnection()
 {
 
-  client->subscribe("LaserTag/SendDamage", [&] (const String &payload)  {
-    Serial.println("Sending damage....");
+	client->subscribe("LaserTag/SendDamage", [&] (const String &payload)  {
+		Serial.println("Sending damage....");
 
-    //Serial.println(payload);
-    HandleSendDamage();
+		//Serial.println(payload);
+		HandleSendDamage();
 
-  });
+	});
 
-   client->publish("LaserTag/Died", "Bye world!");
+	client->subscribe("LaserTag/Start", [&] (const String &payload)  {
+	
+		Serial.println("Starting game...");
+		game_started = true;
+		EnableBulletDetection();
+
+	});
+
+   client->publish("LaserTag/Connected", CreateJsonConnected());
 
 }
 

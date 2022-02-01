@@ -29,12 +29,13 @@ class LaserTag
   private:
     int GetTeamIndex(char aTeam);
     int GetWeaponIndex(char aTeam);
+    String CreateJsonConnected();
+    void HandleSendDamage();
 
   public:
     LaserTag(char aTeam, char aplayerId, EspMQTTClient *aClient);  
     void MQTTLoop();
     void HandleMQTTConnection();
-    void HandleSendDamage();
     void SetIRTransmitterPin(int pin);
     void SetIRRecieverPin(int pin);
     void SetInterruptCallback(void (*f)());
