@@ -47,6 +47,45 @@ void Report::PrintHits()
     }
 }
 
+String Report::CreateJsonReport(char myId)
+{
+
+  String json = "{\"id\":\"";
+  json += myId;
+  json += "\",";
+  json += "\"Hits\":[";
+
+  for(int i = 0; i < last_hit; i++)
+  {
+    json += CreateJsonHit(Hits[i].GetPlayerId(), Hits[i].GetDamage());
+
+    if(i != last_hit - 1){
+      json += ",";
+    }
+    
+  }
+  
+  json += "]}";
+
+  Serial.println(json);
+
+  return json;
+  
+}
+
+String Report::CreateJsonHit(char id, int damage)
+{
+
+  String json = "{\"id\":\"";
+  json += id;
+  json += "\",\"damage\":";
+  json += String(damage);
+  json += "}";
+
+
+  return json;
+}
+
 void Report::Reset()
 {
     delete [] Hits;

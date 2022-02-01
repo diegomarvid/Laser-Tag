@@ -19,6 +19,28 @@ void Shield::ChangeTeam(char aTeam)
 	team = aTeam;
 }
 
+void Shield::SetClient(EspMQTTClient *aClient)
+{
+	client = aClient;
+}
+
+void Shield::SetPlayerId(char aPlayerId)
+{
+	player_id = aPlayerId;
+}
+
+String Shield::CreateJsonDied()
+{
+
+  String json = "{\"id\":\"";
+  json += player_id;
+  json += "\",\"died\":";
+  json += "\"true\"";
+  json += "}";
+
+  return json;
+}
+
 bool Shield::DetectedBullet()
 {
 	
@@ -90,6 +112,7 @@ void Shield::UpdateHealth()
 	if(health <= 0)
 	{
 		alive = false;
+		client->publish("LaserTag/Died", CreateJsonDied());
 
 	} 
 
@@ -108,5 +131,10 @@ void Shield::ResetHealth()
 {
 	alive = true;
 	health = MAX_HEALTH;
+}
+
+String Shield::GetJsonReport()
+{
+	return report.CreateJsonReport(player_id);
 }
 

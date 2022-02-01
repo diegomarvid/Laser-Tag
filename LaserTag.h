@@ -49,6 +49,7 @@ class LaserTag
     void Shoot();
     void Reload();
     void EnableBulletDetection();
+    void DisableBulletDetection();
     bool DetectedBullet();
     bool IsBulletFromSameTeam();
     void Resume();

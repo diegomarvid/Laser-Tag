@@ -7,6 +7,9 @@ LaserTag::LaserTag(char aTeam, char aPlayerId, EspMQTTClient *aClient)
 
 	player_id = aPlayerId;
 
+	client = aClient;
+	client->enableDebuggingMessages();
+
 	team = aTeam;
 	team_index = GetTeamIndex(team);
 
@@ -19,9 +22,10 @@ LaserTag::LaserTag(char aTeam, char aPlayerId, EspMQTTClient *aClient)
 
 	shield.SetMOTT(&mott);
 	shield.ChangeTeam(aTeam);
+	shield.SetClient(client);
+	shield.SetPlayerId(player_id);
 
-	client = aClient;
-	client->enableDebuggingMessages();
+	
 
 }
 
@@ -51,19 +55,19 @@ String LaserTag::CreateJsonConnected()
 void LaserTag::HandleMQTTConnection()
 {
 
-	client->subscribe("LaserTag/SendDamage", [&] (const String &payload)  {
-		Serial.println("Sending damage....");
-
-		//Serial.println(payload);
-		HandleSendDamage();
-
-	});
-
 	client->subscribe("LaserTag/Start", [&] (const String &payload)  {
 	
 		Serial.println("Starting game...");
 		game_started = true;
 		EnableBulletDetection();
+
+	});
+
+	client->subscribe("LaserTag/SendDamage", [&] (const String &payload)  {
+	
+		client->publish("LaserTag/SendDamageTaken", shield.GetJsonReport());
+		game_started = false;
+		DisableBulletDetection();
 
 	});
 
@@ -184,6 +188,11 @@ void LaserTag::Reload()
 void LaserTag::EnableBulletDetection()
 {
 	return mott.EnableSampling();
+}
+
+void LaserTag::DisableBulletDetection()
+{
+	return mott.DisableSampling();
 }
 
 bool LaserTag::DetectedBullet()
