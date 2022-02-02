@@ -55,7 +55,7 @@ String Report::CreateJsonReport(char myId)
   json += "\",";
   json += "\"Hits\":[";
 
-  for(int i = 0; i < last_hit; i++)
+  for(int i = 0; i <= last_hit; i++)
   {
     json += CreateJsonHit(Hits[i].GetPlayerId(), Hits[i].GetDamage());
 
