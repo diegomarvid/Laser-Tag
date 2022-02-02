@@ -78,6 +78,8 @@ void LaserTag::HandleMQTTConnection()
 		Serial.println("Starting game...");
 		game_started = true;
 		EnableBulletDetection();
+		ResetHealth();
+		Reload();
 	});
 
 	client->subscribe("LaserTag/SendDamage", [&] (const String &payload)  {

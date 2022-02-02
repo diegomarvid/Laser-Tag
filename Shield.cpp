@@ -131,6 +131,7 @@ void Shield::ResetHealth()
 {
 	alive = true;
 	health = MAX_HEALTH;
+	report.Reset();
 }
 
 String Shield::GetJsonReport()
