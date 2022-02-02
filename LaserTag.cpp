@@ -57,9 +57,9 @@ String LaserTag::CreateJsonTeam()
 
   String json = "{\"id\":\"";
   json += player_id;
-  json += "\",\"team\":";
+  json += "\",\"team\":\"";
   json += team;
-  json += "}";
+  json += "\"}";
 
 
   return json;
