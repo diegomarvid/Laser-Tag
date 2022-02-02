@@ -2,6 +2,7 @@
 #define LaserTag_h
 
 #include "Arduino.h"
+#include "Button.h"
 #include <MOTT.h>
 #include <Pistol.h>
 #include <Shield.h>
@@ -34,7 +35,8 @@ class LaserTag
     void HandleSendDamage();
 
   public:
-    LaserTag(char aTeam, char aplayerId, EspMQTTClient *aClient);  
+    LaserTag(char aTeam, char aplayerId);  
+    void SetWifiCredentials(const char *ssid, const char *password);
     void MQTTLoop();
     void HandleMQTTConnection();
     void SetIRTransmitterPin(int pin);

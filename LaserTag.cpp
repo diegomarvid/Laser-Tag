@@ -2,12 +2,24 @@
 #include "LaserTag.h"
 #include "LaserTag_consts.h"
 
-LaserTag::LaserTag(char aTeam, char aPlayerId, EspMQTTClient *aClient)
+const char *BROKER_IP = "broker.hivemq.com";
+const char* DEVICE_NAME = "esp32";
+
+EspMQTTClient client2(
+  "default",
+  "default",
+  BROKER_IP 
+  //DEVICE_NAME
+);
+
+
+LaserTag::LaserTag(char aTeam, char aPlayerId)
 {
 
 	player_id = aPlayerId;
 
-	client = aClient;
+	client = &client2;
+
 	client->enableDebuggingMessages();
 
 	team = aTeam;
@@ -27,6 +39,12 @@ LaserTag::LaserTag(char aTeam, char aPlayerId, EspMQTTClient *aClient)
 
 	
 
+}
+
+void LaserTag::SetWifiCredentials(const char *ssid, const char *password)
+{
+	client->setMqttClientName("esp32");
+	client->setWifiCredentials(ssid, password);
 }
 
 void LaserTag::MQTTLoop()
