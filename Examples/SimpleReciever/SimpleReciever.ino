@@ -1,26 +1,26 @@
-#include <MOTT.h>
 #include <LaserTag.h>
 
 const char PLAYER_ID = 'A';
 
-LaserTag laserTag(WHITE_TEAM, PLAYER_ID);
+Button ConnectedButton(18);
 
-const int RX_SIGNAL_PIN = 7;
+LaserTag laserTag(RED_TEAM, PLAYER_ID);
+
+
+const int RX_SIGNAL_PIN = 26;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   pinMode(RX_SIGNAL_PIN, INPUT);
+
+  laserTag.SetWifiCredentials("Ricciardi", "ricciardi");
   
   laserTag.SetIRRecieverPin(RX_SIGNAL_PIN);
+  
   laserTag.SetInterruptCallback(Callback);
 
-  laserTag.EnableBulletDetection();
-
-  Serial.println("LaserTag game loaded up as White Team");
-
-  Serial.println("-------------------------");
-  Serial.println("Ready to detect bullets...");
+  Serial.println("LaserTag game loaded up as Red Team");
 
 }
 
@@ -29,15 +29,29 @@ void Callback()
   laserTag.HandleInterrupt();
 }
 
-char string[25];
+void onConnectionEstablished() {
+
+  laserTag.HandleMQTTConnection();
+  
+}
+
 
 void loop() {
+
+
+  if(ConnectedButton.IsReleased())
+  {
+    Serial.println("Sending team...");
+    laserTag.SendTeam();
+  }
+
+ laserTag.MQTTLoop();
 
  if(laserTag.DetectedBullet()){
 
     if(!laserTag.IsBulletFromSameTeam())
     {
-      
+      //Shake motor
     }
 
     if(laserTag.AmIDead())
