@@ -28,6 +28,7 @@ class Shield
 	
   private:
     void UpdateHealth();
+    void CreateGun(int weapon_id);
     String CreateJsonDied();
 	
   public:
@@ -42,6 +43,7 @@ class Shield
     bool IsShieldDead();
     void ResetHealth();
     String GetJsonReport();
+
 	
 };
 

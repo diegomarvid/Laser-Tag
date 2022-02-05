@@ -28,14 +28,38 @@ class Revolver: public Gun {
       };  
 };
 
-class Turret: public Gun {
+class Turret1: public Gun {
    
    public:
 
-      Turret():Gun(){
-         	this->id = TURRET_ID;
+      Turret1():Gun(){
+         	this->id = TURRET_LEVEL1_ID;
             this->magazine_size = INT_MAX;
-            this->fire_rate = 100;
+            this->fire_rate = 1000;
+            this->damage = 2;
+      };  
+};
+
+class Turret2: public Gun {
+   
+   public:
+
+      Turret2():Gun(){
+         	this->id = TURRET_LEVEL2_ID;
+            this->magazine_size = INT_MAX;
+            this->fire_rate = 1000;
+            this->damage = 5;
+      };  
+};
+
+class Turret3: public Gun {
+   
+   public:
+
+      Turret3():Gun(){
+         	this->id = TURRET_LEVEL3_ID;
+            this->magazine_size = INT_MAX;
+            this->fire_rate = 300;
             this->damage = 1;
       };  
 };

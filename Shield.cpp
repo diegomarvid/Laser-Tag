@@ -48,7 +48,7 @@ bool Shield::DetectedBullet()
 	{
 		mott->ObtainSample(BulletString);
 
-		Serial.print("<<<MOTT: "); Serial.println(BulletString);
+		Serial.print("<< MOTT: "); Serial.println(BulletString);
 
 		if(IsShieldDead())
 		{
@@ -62,7 +62,6 @@ bool Shield::DetectedBullet()
 		} else{
 
 			UpdateHealth();
-
 
 			Serial.print("OUCH! Player ");
 			Serial.print(BulletString[0]);
@@ -87,22 +86,38 @@ bool Shield::IsBulletFromSameTeam()
 	return team == BulletString[1];
 }
 
+void Shield::CreateGun(int weapon_id)
+{
+	switch(weapon_id)
+	{
+		case REVOLVER_ID:
+			gun = new Revolver();
+			break;
+		case ROCKET_LAUNCHER_ID:
+			gun = new RocketLauncher();
+			break;
+		case TURRET_LEVEL1_ID:
+			gun = new Turret1();
+			break;
+		case TURRET_LEVEL2_ID:
+			gun = new Turret2();
+			break;
+		case TURRET_LEVEL3_ID:
+			gun = new Turret3();
+			break;
+		default:
+			Serial.println("Shield didnt find correct weapon id, using revolver as default");
+			gun = new Revolver();
+	}
+}
+
 void Shield::UpdateHealth()
 {
 	if(alive == false) return;
 
 	char weapon_id = BulletString[2];
 
-	if(weapon_id == REVOLVER_ID)
-	{
-		gun = new Revolver();
-
-	}
-
-	if(weapon_id == ROCKET_LAUNCHER_ID)
-	{
-		gun = new RocketLauncher();	
-	}
+	CreateGun(weapon_id);
 
 	Hit hit(BulletString[0], gun->GetDamage());
 	report.AddHit(hit);
@@ -138,4 +153,6 @@ String Shield::GetJsonReport()
 {
 	return report.CreateJsonReport(player_id);
 }
+
+
 

@@ -59,6 +59,7 @@ class LaserTag
     bool AmIDead();
     void ResetHealth();
     void SendTeam();
+
     
 
 	

@@ -25,7 +25,17 @@ void Pistol::CreateGun(int weapon_id)
 		case ROCKET_LAUNCHER_ID:
 			gun = new RocketLauncher();
 			break;
+		case TURRET_LEVEL1_ID:
+			gun = new Turret1();
+			break;
+		case TURRET_LEVEL2_ID:
+			gun = new Turret2();
+			break;
+		case TURRET_LEVEL3_ID:
+			gun = new Turret3();
+			break;
 		default:
+			Serial.println("Pistol didnt find correct weapon id, using revolver as default");
 			gun = new Revolver();
 	}
 }
@@ -87,17 +97,18 @@ bool Pistol::IsFasterThanFireRate()
 
 void Pistol::Shoot()
 {
+
+	if(IsFasterThanFireRate())
+	{
+		//Serial.println("You shoot too fast");
+		return;
+	}
+
 	if(bullets <= 0)
 	{
 		Serial.println("No more bullets");
 		return;
 	} 
-
-	if(IsFasterThanFireRate())
-	{
-		Serial.println("You shoot too fast");
-		return;
-	}
 
 	bullets--;
 

@@ -93,7 +93,7 @@ void LaserTag::HandleMQTTConnection()
 
 	client->subscribe("LaserTag/Start", [&] (const String &payload)  {
 	
-		Serial.println("Starting game...");
+		Serial.println("[Game Started]");
 		game_started = true;
 		EnableBulletDetection();
 		ResetHealth();
@@ -208,11 +208,18 @@ void LaserTag::ChangeToNextWeapon(){
 void LaserTag::Shoot()
 {
 
-	if(!game_started) return;
+	if(!game_started) 
+	{
+		Serial.println("Game hasnt started yet. Cant shoot :(");
+		return;
+	}
 
 	if(!AmIDead())
 	{
 		pistol.Shoot();
+	}else
+	{
+		Serial.println("I cant shoot. I am dead :(");
 	}
 	
 }
@@ -257,5 +264,6 @@ void LaserTag::ResetHealth()
 {
 	shield.ResetHealth();
 }
+
 
 
