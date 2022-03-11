@@ -48,37 +48,77 @@ bool Shield::DetectedBullet()
 	{
 		mott->ObtainSample(BulletString);
 
-		Serial.print("<< MOTT: "); Serial.println(BulletString);
-
-		if(IsShieldDead())
+		if (IsSampleCorrectFormat(BulletString))
 		{
-			return true;
-		}
 
-		if(IsBulletFromSameTeam())
-		{
-			Serial.println("Friendly fire is OFF");
-			
-		} else{
+			Serial.print("<< MOTT: "); Serial.println(BulletString);
 
-			UpdateHealth();
+			if(IsShieldDead())
+			{
+				return true;
+			}
 
-			Serial.print("OUCH! Player ");
-			Serial.print(BulletString[0]);
-			Serial.print(" hit me, Health: ");
-			Serial.print(health);
-			Serial.println(" hp.");
+			if(IsBulletFromSameTeam())
+			{
+				Serial.println("Friendly fire is OFF");
+				
+			} else{
 
-			report.PrintHits();
+				UpdateHealth();
+
+				Serial.print("OUCH! Player ");
+				Serial.print(BulletString[0]);
+				Serial.print(" hit me, Health: ");
+				Serial.print(health);
+				Serial.println(" hp.");
+
+				report.PrintHits();
+
+			}	
 
 		}
 
 		return true;
+		
 
 	} else{	
 		return false;
 	}
 	
+}
+
+bool Shield::IsSampleCorrectFormat(char *aBulletString)
+{
+	char id = aBulletString[0];
+
+	if(id < 48 || id > 122) {return false;}
+
+	// Serial.print("Passed id condition: ");
+	// Serial.print(id);
+
+	char team = aBulletString[1];
+
+	bool isValidTeam = false;
+
+	for(int i = 0; i < TEAM_AMOUNT; i++)
+	{
+		if(team == Teams[i]) {
+			isValidTeam = true;
+		}
+	}
+
+	if(!isValidTeam) {return false;}
+
+	// Serial.print("Passed team condition: ");
+	// Serial.print(team);
+
+	char gun_id = aBulletString[2];
+
+	if(gun_id < 48 || gun_id > 122) {return false;}
+
+	// Serial.print("Passed gun id condition: ");
+	// Serial.print(gun_id);
+
 }
 
 bool Shield::IsBulletFromSameTeam()

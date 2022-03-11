@@ -18,7 +18,7 @@ class Shield
   char player_id;
   int health;
   bool alive;
-  char BulletString[2];
+  char BulletString[3];
   Gun *gun;
   char currentGunId;
 
@@ -30,6 +30,7 @@ class Shield
     void UpdateHealth();
     void CreateGun(int weapon_id);
     String CreateJsonDied();
+    bool IsSampleCorrectFormat(char *aBulletString);
 	
   public:
     Shield();
