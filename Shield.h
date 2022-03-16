@@ -19,6 +19,7 @@ class Shield
   int health;
   bool alive;
   char BulletString[3];
+  char eliminated;
   Gun *gun;
   char currentGunId;
 

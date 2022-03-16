@@ -124,7 +124,8 @@ void LaserTag::SetIRRecieverPin(int pin)
 
 void LaserTag::SetInterruptCallback(void (*f)())
 {
-	mott.SetBitTime(1L, f); //  speed: 1 bit / ms
+	mott.SetBitTime(1L);
+	mott.SetCallback(f); //  speed: 1 bit / ms
 }
 
 int LaserTag::GetTeamIndex(char aTeam)

@@ -7,6 +7,7 @@ Shield::Shield()
 	health = MAX_HEALTH;
 	alive = true;
 	currentGunId = 'X';
+	eliminated = 'X';
 }
 
 void Shield::SetMOTT(MOTT *aMott)
@@ -35,7 +36,10 @@ String Shield::CreateJsonDied()
   String json = "{\"id\":\"";
   json += player_id;
   json += "\",\"died\":";
-  json += "\"true\"";
+  json += "\"true\",";
+  json += "\"eliminated\":\"";
+  json += eliminated;
+  json += "\"";
   json += "}";
 
   return json;
@@ -167,6 +171,7 @@ void Shield::UpdateHealth()
 	if(health <= 0)
 	{
 		alive = false;
+		eliminated = BulletString[0];
 		client->publish("LaserTag/Died", CreateJsonDied());
 
 	} 
